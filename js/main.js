@@ -1,4 +1,4 @@
-/* Blue Sky Digital — nav toggle + assessment form handling
+/* Rocky Mountain Digital — nav toggle + assessment form handling
    Form posts via Formspree endpoint when configured; otherwise shows a
    mailto fallback so the site works before any account exists. */
 (function () {
@@ -25,7 +25,7 @@
   // ---- Assessment form ----
   // Set your Formspree endpoint here after signing up at formspree.io (free):
   var FORMSPREE_ENDPOINT = ""; // e.g. "https://formspree.io/f/xxxxxxxx"
-  var CONTACT_EMAIL = "hello@blueskydigital.ca";
+  var CONTACT_EMAIL = "hello@rockymountaindigital.ca"; // placeholder — swap when the real one is decided
 
   var form = document.getElementById("assessment-form");
   if (!form) return;
@@ -50,8 +50,6 @@
       "Contact name: " + (data.name || "-"),
       "Email: " + (data.email || "-"),
       "Phone: " + (data.phone || "-"),
-      "Population (approx): " + (data.population || "-"),
-      "Interested in: " + (data.services || "-"),
       "",
       "Message:",
       data.message || "-"
@@ -75,9 +73,7 @@
       name: (fd.get("name") || "").trim(),
       email: (fd.get("email") || "").trim(),
       phone: (fd.get("phone") || "").trim(),
-      population: (fd.get("population") || "").trim(),
-      message: (fd.get("message") || "").trim(),
-      services: fd.getAll("services").join(", ")
+      message: (fd.get("message") || "").trim()
     };
 
     if (!FORMSPREE_ENDPOINT) {

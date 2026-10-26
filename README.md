@@ -1,38 +1,36 @@
-# Blue Sky Digital 🌤️
+# Rocky Mountain Digital 🏔️
 
-**Privacy, records, and web services for small Alberta municipalities.**
+**Tech, privacy, and records help for Alberta's small municipalities.**
 
-A professional service website for a small-town-focused consultancy helping Alberta villages navigate POPA (Protection of Privacy Act) and ATIA (Access to Information Act) requirements — with fixed prices, written quotes, and honest work.
+An interactive service website featuring a **real LLM-powered AI assistant** and an **insurance-style instant quote quiz** — built for villages navigating POPA/ATIA privacy requirements, records chaos, and outdated web presence.
+
+> **Working name:** "Rocky Mountain Digital" — see [`NAMES.md`](NAMES.md) for 100 ranked Alberta name candidates. Not registered or trademarked.
 
 ## What's on the site
 
-| Page | Purpose |
+| Piece | What it does |
 |---|---|
-| `index.html` | Landing page — offer, POPA/ATIA stakes, packages, price-match promise, council FAQ, free assessment form |
-| `packages.html` | Package comparison + payment terms + price-match promise |
-| `about.html` | About & service area (province-wide Alberta) |
-| `concerns.html` | "Questions & Concerns" — every council objection, answered plainly |
-| `privacy.html` | Plain-language privacy policy |
+| 💬 **Ask Rocky** | Real AI chat (Puter.js LLM) — answers any question in plain language, knows POPA/ATIA, pricing, and the business |
+| ✨ **Instant quote quiz** | 5-step car-insurance-style quiz — free-text answers (including typed stories) shape the estimate via the LLM, rendered as a printable quote card |
+| 📄 **4 content pages** | Services, questions & concerns, about, privacy policy — all print-clean for council packages |
+| 📝 **Assessment form** | Formspree-ready with mailto fallback |
 
-## Features
+## Tech
 
-- 💬 **"Ask Blue Sky" assistant** — an in-browser chat assistant with a 27-topic knowledge base. Runs 100% client-side: no API keys, no cost, and **nothing visitors type ever leaves their computer** — a deliberate choice for a privacy business.
-- 📄 **Print-clean pages** — designed to go straight into council agenda packages.
-- 📱 **Mobile-friendly, accessible** — works on rural connections; skip links, focus management, semantic markup.
-- 📝 **Free assessment form** — Formspree-ready with automatic mailto fallback (works before any backend exists).
+- Static site — vanilla HTML/CSS/JS, no build step
+- **[Puter.js](https://developer.puter.com)** powers the LLM (no API keys, no cost; swap for a personal key later without touching UI code)
+- Deep-navy glassmorphism UI, Inter/Sora typography, fully responsive, print styles included
 
-## Local development
-
-Open `index.html` directly, or serve locally:
+## Run locally
 
 ```bash
 python -m http.server 8080
 ```
 
-## Deployment
+## Deploy
 
-Static site — deploy anywhere (GitHub Pages, Netlify, Cloudflare Pages). To activate the form, create a free [Formspree](https://formspree.io) form and paste the endpoint into `js/main.js` (`FORMSPREE_ENDPOINT`).
+Push to GitHub Pages / Netlify / anywhere static. For the form: add a Formspree endpoint in `js/main.js` (`FORMSPREE_ENDPOINT`).
 
----
+## Privacy notes
 
-*Fixed prices. Written quotes. Honest work.*
+The AI chat/quiz sends visitor messages to Puter's AI service to generate answers (documented in `privacy.html`). No cookies, no trackers, no data sales. The quote quiz requires no personal information.
