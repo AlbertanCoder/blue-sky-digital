@@ -55,11 +55,11 @@
       free: "Anything about timelines, budget year, or council dates I should factor in?"
     },
     {
-      q: "One last thing — what should I know?",
-      hint: "Staff comfort with tech, past attempts, budget worries, anything. This is where surprises hide.",
+      q: "What are your goals for your community?",
+      hint: "Your goals, your ideas, that 'what if we could…' moment from council — this is where your vision shapes the estimate.",
       key: "extra",
       options: [],
-      free: "Your turn — type whatever you want me to consider in your estimate."
+      free: "Tell me what you're hoping to make happen — anything you want me to weigh in your estimate."
     }
   ];
 

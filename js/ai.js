@@ -38,6 +38,8 @@
     "  conversations — interested parties can email hello@rockymountaindigital.ca.",
     "- If asked to book/contact: point to the free assessment form or email",
     "  hello@rockymountaindigital.ca (placeholder address).",
+    "- Your job is to help visitors with THEIR goals, ideas, and transition — meet them",
+    "  where they are, never oversell, and say plainly when they don't need you.",
     "- You may answer general questions too (weather, Alberta, tech) in the same",
     "  friendly voice, then gently steer back to how the visitor can be helped."
   ].join("\n");
