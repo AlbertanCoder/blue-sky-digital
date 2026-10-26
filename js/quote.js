@@ -187,6 +187,7 @@
         '<p class="quote-price">' + money(quote.total_low) + " – " + money(quote.total_high) + "</p>" +
         '<p style="color:var(--mist);font-size:.92rem;margin-top:-6px">Generic planning estimate — like an online insurance quote. Confirmed in writing after a free assessment.</p>' +
         '<div class="quote-lines">' + items + "</div>" +
+        (quote.market_note ? '<p style="background:rgba(240,180,41,.14);border:1px solid rgba(240,180,41,.4);border-radius:12px;padding:12px 16px;font-size:.88rem;color:#ffd97a;margin:0 0 18px">📊 ' + escapeHtml(quote.market_note) + "</p>" : "") +
         (notes ? "<ul style=\"color:var(--mist);font-size:.92rem;padding-left:1.2em\">" + notes + "</ul>" : "") +
         '<div class="quiz-nav">' +
           '<button class="btn btn-gold" onclick="window.print()">🖨️ Save / Print this quote</button>' +
