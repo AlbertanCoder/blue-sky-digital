@@ -52,15 +52,41 @@
       .trim();
   }
 
-  function chatReply(userMessage, history) {
+  // ---------------- Model chain: best frontier models, free to visitors ----------------
+  // Puter's free tier lets visitors use premium models at no cost. We try the
+  // strongest first and fall back automatically. null = Puter's auto-router.
+  var MODELS = ["gpt-5", "claude-sonnet-4", "gemini-2.0-flash", null];
+  var workingModelIndex = 0;
+
+  function callAI(messages) {
     var ai = puter();
     if (!ai) return Promise.reject(new Error("no-ai"));
+    var order = [];
+    for (var i = 0; i < MODELS.length; i++) {
+      order.push((workingModelIndex + i) % MODELS.length);
+    }
+    function attempt(k) {
+      if (k >= order.length) return Promise.reject(new Error("all-models-failed"));
+      var idx = order[k];
+      var m = MODELS[idx];
+      var p = m ? ai.chat(messages, { model: m }) : ai.chat(messages);
+      return p.then(function (res) {
+        workingModelIndex = idx; // remember what works for the session
+        return res;
+      }).catch(function () {
+        return attempt(k + 1); // model unavailable -> next best
+      });
+    }
+    return attempt(0);
+  }
+
+  function chatReply(userMessage, history) {
     var messages = [{ role: "system", content: CONTEXT }];
     (history || []).forEach(function (m) {
       messages.push({ role: m.who === "user" ? "user" : "assistant", content: m.text });
     });
     messages.push({ role: "user", content: userMessage });
-    return ai.chat(messages).then(function (res) {
+    return callAI(messages).then(function (res) {
       var text = (res && res.message && res.message.content) ? res.message.content : String(res || "");
       return clean(text);
     });
@@ -92,18 +118,23 @@
   }
 
   function quote(quizAnswers) {
-    var ai = puter();
-    if (!ai) return Promise.reject(new Error("no-ai"));
     var summary = quizAnswers.map(function (a) {
       return "Q: " + a.question + "\nA: " + (a.answer || "(not answered)") +
         (a.detail ? "\nTheir own words: " + a.detail : "");
     }).join("\n\n");
-    return ai.chat([
-      { role: "system", content: QUOTE_SYSTEM },
-      { role: "user", content: "Quiz answers:\n\n" + summary + "\n\nReturn ONLY the JSON object." }
-    ]).then(function (res) {
-      var text = (res && res.message && res.message.content) ? res.message.content : String(res || "");
-      return parseQuoteJSON(text);
+    function request() {
+      return callAI([
+        { role: "system", content: QUOTE_SYSTEM },
+        { role: "user", content: "Quiz answers:\n\n" + summary + "\n\nReturn ONLY the JSON object." }
+      ]).then(function (res) {
+        var text = (res && res.message && res.message.content) ? res.message.content : String(res || "");
+        return parseQuoteJSON(text);
+      });
+    }
+    // one retry: if the model hiccups on JSON, ask again before giving up
+    return request().catch(function (err) {
+      if (err && err.message === "no-ai") throw err;
+      return request();
     });
   }
 

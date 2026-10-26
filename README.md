@@ -10,7 +10,7 @@ An interactive service website featuring a **real LLM-powered AI assistant** and
 
 | Piece | What it does |
 |---|---|
-| 💬 **Ask Rocky** | Real AI chat (Puter.js LLM) — answers any question in plain language, knows POPA/ATIA, pricing, and the business |
+| 💬 **Ask Rocky** | Real frontier AI chat (GPT-5 → Claude → Gemini fallback chain via Puter.js, free for visitors) — answers any question in plain language, knows POPA/ATIA, pricing, and the business |
 | ✨ **Instant quote quiz** | 5-step car-insurance-style quiz — free-text answers (including typed stories) shape the estimate via the LLM, rendered as a printable quote card |
 | 📄 **4 content pages** | Services, questions & concerns, about, privacy policy — all print-clean for council packages |
 | 📝 **Assessment form** | Formspree-ready with mailto fallback |

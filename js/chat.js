@@ -32,7 +32,7 @@
       '<div class="rmd-panel" id="rmd-panel" role="dialog" aria-label="Ask Rocky AI assistant">' +
         '<div class="rmd-head">' +
           '<div><p class="rmd-title">Ask Rocky</p>' +
-          '<p class="rmd-sub">Real AI · answers anything · powered by Puter</p></div>' +
+          '<p class="rmd-sub">GPT-5 / Claude AI · answers anything · free</p></div>' +
           '<button class="rmd-close" aria-label="Close chat">×</button>' +
         '</div>' +
         '<div class="rmd-log" role="log" aria-live="polite"></div>' +
