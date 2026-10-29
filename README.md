@@ -1,5 +1,8 @@
 # Rocky Mountain Digital 🏔️
 
+> **Archived.** This was an early version of my business website. My current work for small Alberta towns is
+> [Riverbend](https://github.com/AlbertanCoder/riverbend).
+
 **Tech, privacy, and records help for Alberta's small municipalities.**
 
 An interactive service website featuring a **real LLM-powered AI assistant** and an **insurance-style instant quote quiz** — built for villages navigating POPA/ATIA privacy requirements, records chaos, and outdated web presence.
